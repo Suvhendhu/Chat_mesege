@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Chat</title>
+  <style>
+    body { font-family: sans-serif; background: #e0e0e0; padding: 20px; }
+    #chat { background: white; padding: 10px; border-radius: 8px; height: 300px; overflow-y: scroll; }
+    input { width: 80%; padding: 10px; }
+    button { padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>🤖 Auto Messenger</h2>
+  <div id="chat"></div>
+  <input id="msg" placeholder="Write a message..." />
+  <button onclick="send()">Send</button>
+
+  <script>
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("msg");
+
+    function send() {
+      const msg = input.value;
+      if (!msg) return;
+      chat.innerHTML += "<p><b>You:</b> " + msg + "</p>";
+      input.value = "";
+      setTimeout(() => {
+        let reply = "Sorry, I didn't understand!";
+        if (msg.toLowerCase().includes("hi")) reply = "Hello! 😊";
+        else if (msg.toLowerCase().includes("love")) reply = "❤️ I love you too!";
+        chat.innerHTML += "<p><b>Bot:</b> " + reply + "</p>";
+        chat.scrollTop = chat.scrollHeight;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
